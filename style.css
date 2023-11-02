@@ -1,0 +1,337 @@
+/**********************************************
+*** GENERAL
+**********************************************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+body {
+    background-image: linear-gradient(rgba(249, 2, 2, 0.4), rgba(221, 238, 95, 0.4));
+    background-size: cover;
+    background-position: center;
+    font-weight: 300;
+    position: relative;
+    height: 100vh;
+    color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/**********************************************
+*** PLAYERS
+**********************************************/
+.wrapper {
+    width: 1000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+}
+.player-0-panel,
+.player-1-panel {
+    width: 50%;
+    /* float: left; */
+    height: 600px;
+    padding: 100px;
+}
+.player-name {
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 100;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    position: relative;
+}
+.player-score {
+    text-align: center;
+    font-size: 80px;
+    font-weight: 100;
+    color: #EB4D4D;
+    margin-bottom: 70px;
+}
+.active { 
+    background-color: #f7f7f7; 
+}
+.active .player-name { 
+    font-weight: 300; 
+}
+.active .player-name::after {
+    content: "\2022";
+    font-size: 47px;
+    position: absolute;
+    color: #EB4D4D;
+    top: -7px;
+    right: 10px;
+    
+}
+.player-current-box {
+    background-image: linear-gradient(rgba(249, 2, 2, 0.4), rgba(221, 238, 95, 0.4));
+    color: rgb(199, 22, 22);
+    border: 2px solid red;
+    border-radius: 50%;
+    height: 120px;
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+}
+.player-current-label {
+    margin-top: 10px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #222;
+}
+.player-current-score {
+    font-size: 30px;
+}
+button {
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    background: none;
+    border: none;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+}
+button:hover { 
+    font-weight: 600; 
+    box-shadow: 10px 5px 7px rgb(79, 33, 39); 
+}
+button:hover i { 
+    margin-right: 20px; 
+}
+button:focus {
+    outline: none;
+}
+i {
+    width: 30px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.btn-new { 
+    top: 45px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 1px 5px 5px rgb(79, 33, 39); 
+    padding: 5px;
+    transition: box-shadow 0.3s;
+}
+.btn-roll { 
+    top: 403px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 1px 5px 5px rgb(79, 33, 39);
+    padding: 5px; 
+    transition: box-shadow 0.3s;
+}
+.btn-hold { 
+    top: 467px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 1px 5px 5px rgb(79, 33, 39); 
+    padding: 5px;
+    transition: box-shadow 0.3s;
+}
+button:active { 
+    box-shadow: 10px 5px 1px rgb(79, 33, 39); 
+}
+.popup {
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    background: none;
+    border: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+}
+#rules{
+    text-align: center;
+    top: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 1px 5px 5px rgb(79, 33, 39); 
+    padding: 5px;
+    transition: box-shadow 0.3s;
+}
+#rules h1{
+    height: 20%;
+    background-color: #e5e5e5;
+    color: #d90429;
+    font-size: 45px;
+    padding: auto;
+}
+.popup .popuptext {
+    text-align: center;
+    visibility: hidden;
+    width: 900px;
+    height: 300px;
+    background-color: #555;
+    color: #fff;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    padding: 25px;
+    left: -175%;
+}
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+}
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+.winner { 
+    background-color: #f7f7f7; 
+}
+.winner .player-name { 
+    font-weight: 300; color: #EB4D4D; 
+} 
+.game {
+position: relative;
+width: auto;
+height: 100%; 
+}
+.container {
+position: absolute;
+top: calc(50% - 100px);
+left: calc(50% - 200px);
+} 
+/**********************************************
+*** Dices
+**********************************************/
+.dice {
+position: relative;
+width: 100px;
+height: 100px;
+transform-style: preserve-3d;
+transition: transform 1s; 
+}
+.dot {
+position: absolute;
+width: 20px;
+height: 20px;
+margin: -10px 5px 5px -10px;
+border-radius: 20px;
+background-color: #f25f5c;
+box-shadow: inset 2px 2px #d90429;
+}
+.dice-one {
+position: absolute;
+left: 150px; 
+}
+.dice-two {
+position: absolute;
+left: -50px;
+
+}
+.side {
+position: absolute;
+background-color: #ffF;
+border-radius:5px;
+width: 100px;
+height: 100px;
+border: 1px solid #e5e5e5;
+text-align: center;
+line-height: 2em;
+}
+.side:nth-child(1) {
+    transform: translateZ(3.1em); 
+}
+.side:nth-child(6) {
+    transform: rotateY(90deg) translateZ(3.1em); 
+}
+.side:nth-child(3) {
+    transform: rotateY(-90deg) translateZ(3.1em); 
+}
+.side:nth-child(4) {
+    transform: rotateX(90deg) translateZ(3.1em); 
+}
+.side:nth-child(5) {
+    transform: rotateX(-90deg) translateZ(3.1em); 
+}
+.side:nth-child(2) {
+    transform: rotateY(-180deg) translateZ(3.1em);
+}
+.show-1 {
+    transform: rotateX(720deg) rotateZ(-720deg);
+}
+.show-2 {
+    transform: rotateX(-900deg) rotateZ(1080deg); 
+}  
+.show-3 {
+    transform: rotateY(810deg) rotateZ(720deg); 
+}
+.show-4 {
+    transform: rotateX(-810deg) rotateZ(-1080deg); 
+}
+.show-5 {
+    transform: rotateX(450deg) rotateZ(-720deg); 
+}
+.show-6 {
+    transform: rotateY(-450deg) rotateZ(-1440deg); 
+}
+.two-1, .three-1, .four-1, .five-1, .six-1 {
+    top: 20%;
+    left: 20%; 
+}
+.four-3, .five-3, .six-4 {
+    top: 20%;
+    left: 80%; 
+}
+.one-1, .three-2, .five-5 {
+    top: 50%;
+    left: 50%;
+}
+.four-2, .five-2, .six-3 {
+    top: 80%;
+    left: 20%; 
+}
+.two-2, .three-3, .four-4, .five-4, .six-6 {
+    top: 80%;
+    left: 80%; 
+}
+.six-2 {
+    top: 50%;
+    left: 20%; 
+}
+.six-5 {
+    top: 50%;
+    left: 80%; 
+} 
+  
